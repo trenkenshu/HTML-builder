@@ -12,7 +12,7 @@ console.log('Напиши что-то хорошее:');
 
 rl.on('line', answer => {
   if( /^exit/.test(answer) ) {
-    console.log('Столько хорошего ни одна консоль не видела :)');
+    console.log('Ну, всё. Хорошего по-немногу :)');
     process.exit();
   } else {
     fs.appendFile(path.join(__dirname, 'text.txt'), answer+' \r\n', function(err) {
