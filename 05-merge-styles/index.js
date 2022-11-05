@@ -10,7 +10,7 @@ fs.readdir(cssPath, {
   withFileTypes:  true
 }, (err, files) => {
   for(let i = 0; i < files.length; i++) {
-    if(files[i].name.split('.')[1] == 'css') {
+    if(files[i].name.split('.')[1] == 'css' && files[i].isFile()) {
       buffer += fs.readFileSync(path.join(cssPath, files[i].name));
     }
   }
