@@ -1,5 +1,7 @@
 const fs = require('fs/promises');
+const fsNoProm = require('fs');
 const path = require('node:path');
+const { resolve } = require('path');
 
 let inputTemplate = path.join(__dirname, 'template.html');
 let outputIndex = path.join(__dirname, 'project-dist', 'index.html');
@@ -16,19 +18,16 @@ let replaceIndex = [];
 fs.rm(outputDir, {
   recursive: true
 })
-.catch( err => console.log(err.message))
+.catch( err => console.log('Creating dir.'))
 .then( result => {
   exist = true;
   console.log('Copying assets..');
-  return  fs.cp(assetFrom, assetTo, {
-            recursive : true,
-            force     : true
-          });
+  return  copyAssets();
 })
-.then( () => {
+.then( (assetMessage) => {
 
   let prepareTemplate = [];
-  console.log('Assets are copied.');
+  console.log(assetMessage);
   console.log('Building template...');
   prepareTemplate.push(fs.readFile(inputTemplate));
   prepareTemplate.push(fs.readdir(components, { withFileTypes: true}));
@@ -87,7 +86,7 @@ console.log(err.message))
       replaceIndex.push(fs.readFile(pathToFile));
     }
   }
-  console.log('Buildeng styles...');
+  console.log('Building styles...');
   return Promise.all(replaceIndex);
 }, err =>
 console.log(err))
@@ -102,3 +101,16 @@ console.log(err))
 
 }, (err) =>
 console.log(err.message));
+
+
+async function copyAssets() {
+  return new Promise( (resolve, reject) => {
+            fsNoProm.cp(assetFrom, assetTo, {
+            force     : true,
+            recursive : true
+          }, err => {
+            if(err) console.log(err);
+            else resolve('Assets are copied.');
+          })
+        })
+}
