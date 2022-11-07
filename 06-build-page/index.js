@@ -94,7 +94,7 @@ console.log(err))
 
   buffer = '';
   for(let i = 0; i < stylesData.length; i++) {
-    buffer += stylesData[i];
+    buffer += stylesData[i] + '\n';
   }
   console.log('Styles are built.');
   return fs.appendFile(outputStyles, buffer);

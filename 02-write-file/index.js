@@ -1,5 +1,5 @@
 const fs = require('fs');
-const path = require('node:path');
+const path = require('path');
 const readline = require('readline');
 const process = require('process');
 

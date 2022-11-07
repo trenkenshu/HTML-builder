@@ -1,4 +1,4 @@
-const path = require('node:path');
+const path = require('path');
 const fs = require('fs');
 
 let from = path.join(__dirname, 'files');
@@ -19,18 +19,16 @@ fs.access(to, (err) => {
   }
 });
 
-async function copyFile() {
-  return new Promise( (resolve, reject) => {
-            fs.cp(from, to, {
-            force     : true,
-            recursive : true
-          }, err => {
-            if(err) console.log(err);
-            else {
-              console.log('Files are copied.');
-              resolve();
-            }
-          })
-        })
+function copyFile() {
+  fs.cp(from, to, {
+    force     : true,
+    recursive : true
+  }, err => {
+    if(err) console.log(err);
+    else {
+      console.log('Files are copied.');
+    }
+  });
+  return
 }
 
