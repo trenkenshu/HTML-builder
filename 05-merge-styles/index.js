@@ -1,5 +1,5 @@
 const fs = require('fs/promises');
-const path = require('node:path');
+const path = require('path');
 
 let buffer = '';
 let promises = [];

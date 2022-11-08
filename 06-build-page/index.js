@@ -1,6 +1,6 @@
 const fs = require('fs/promises');
 const fsNoProm = require('fs');
-const path = require('node:path');
+const path = require('path');
 const { resolve } = require('path');
 
 let inputTemplate = path.join(__dirname, 'template.html');
