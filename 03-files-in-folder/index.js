@@ -15,7 +15,7 @@ files.then((ans) => {
   for(let i = 0; i < ans.length; i++) {
     if(ans[i].isFile()) {
       stats.push(fsProm.stat(path.join(secret, ans[i].name)));
-      let ext = path.extname(secret + '/' + ans[i].name).split('.');
+      let ext = path.extname(path.join(secret, ans[i].name)).split('.');
       ext = ext[ext.length - 1];
       let fileName = ans[i].name.slice(0, ans[i].name.length - ext.length - 1);
 
