@@ -15,9 +15,18 @@ files.then((ans) => {
   for(let i = 0; i < ans.length; i++) {
     if(ans[i].isFile()) {
       stats.push(fsProm.stat(path.join(secret, ans[i].name)));
+      let ext = path.extname(secret + '/' + ans[i].name).split('.');
+      let fullName = ans[i].name.split('.');
+      console.log(fullName);
+      let fileName = '';
+      for(let ii = 0; ii < fullName.length - 1; ii++) {
+        if(ii > 0 && ii < fullName.length - 1) fileName+= '.';
+        fileName += fullName[ii];
+      }
+      ext = ext[ext.length - 1];
       filesData.push({
-          'file name'   : ans[i].name.split('.')[0],
-          'extension'   : path.extname(secret + '/' + ans[i].name).split('.')[1],
+          'file name'   : fileName,
+          'extension'   : ext,
         });
     }
   }
