@@ -17,7 +17,6 @@ files.then((ans) => {
       stats.push(fsProm.stat(path.join(secret, ans[i].name)));
       let ext = path.extname(secret + '/' + ans[i].name).split('.');
       let fullName = ans[i].name.split('.');
-      console.log(fullName);
       let fileName = '';
       for(let ii = 0; ii < fullName.length - 1; ii++) {
         if(ii > 0 && ii < fullName.length - 1) fileName+= '.';
